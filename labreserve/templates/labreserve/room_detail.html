@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} | {{ room.room_text }} Detail{% endblock %}
+
+{% block content %}
+  <h1>Room: {{ room.room_text }}</h1>
+
+  <p><strong>No of computers:</strong> {{ room.room_no_of_computers }}</p>
+  <p><strong>Description:</strong> {{ room.room_description }}</p>
+  {% if room.room_has_projector %}
+    <p><em>This room has a projector installed.</em></p>
+  {% else %}
+    <p><em>This room does not have a projector installed.</em></p>
+  {% endif %}
+  
+  <a href="{{ room.get_absolute_url }}/update/">Edit</a> | 
+  <a href="{{room.get_absolute_url }}/delete/">Delete</a>
+{% endblock %}

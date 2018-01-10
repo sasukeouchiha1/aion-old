@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aion{% block title %}{% endblock %}</title>
+    <link 
+      rel="stylesheet" 
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" 
+      integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" 
+      crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'labreserve/style.css' %}" />
+  </head>
+  <body>
+    
+      <header class="header">
+        <div class="container">
+        <h1 class="brand float-left"><a href="{% url 'index' %}">AION</a></h1>
+          <ul class="nav nav-pills justify-content-end">
+            {% if user.is_authenticated  %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                  Welcome {{ user }}
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                {% if user.is_superuser %}
+                <a class="dropdown-item" href="{% url 'bookings' %}">All Bookings</a>
+                <a class="dropdown-item" href="{% url 'rooms' %}">All Rooms</a>
+                <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Site</a>
+                {% endif %}
+              </div><!-- /.dropdown-menu -->
+            </li><!-- /.dropdown -->
+            {% else %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a>
+            {% endif %}
+            <!--li class="nav-item"><a class="nav-link" href="/labreserve/room/1/2017/06/05/">Test Cal View</a></li-->
+          </ul>
+        </div>
+      </header>
+      <div class="clearfix"></div>
+      {% if user.is_authenticated  %}
+      <div class="container user-nav">
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item"><a class="nav-link" href="{% url 'booking_create' %}">Reserve a Lab</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'booking_manage' %}">Manage Reservations</a>
+    
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                Room Calendars
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/labreserve/room/1/{% now 'Y' %}/{% now 'm' %}/{% now 'd' %}">B301</a>
+              <a class="dropdown-item" href="/labreserve/room/3/{% now 'Y' %}/{% now 'm' %}/{% now 'd' %} ">D410</a>
+            </div><!-- /.dropdown-menu -->
+          </li><!-- /.dropdown -->
+        </ul>
+      </div>
+      {% endif %}
+      
+      <main class="container main">
+      {% block content %}{% endblock %}
+      </main>
+      
+      <footer class="footer">
+        <div class="container"><div class="row"><div class="col">
+          <span class="text-muted">&copy; Copyright {% now "Y" %} <a href="http://techhigh.us">Worcester Technical High School</a></span>
+        </div></div></div>
+      </footer>
+    
+    {% block js %}
+    <script 
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+      crossorigin="anonymous"></script>
+    <script 
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+      crossorigin="anonymous"></script>
+    <script 
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" 
+      integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" 
+      crossorigin="anonymous"></script>
+    {% endblock %}
+  </body>
+</html>

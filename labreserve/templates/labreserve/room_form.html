@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %} | Room{% endblock %}
+
+{% block content %}
+
+<form action="" method="post">
+  {% csrf_token %}
+  
+  <div class="fieldWrapper form-group">
+    {{ form.room_text.errors }}
+    <label for="{{ form.room_text.id_for_label }}">Room:</label>
+    {{ form.room_text|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ form.room_no_of_computers.errors }}
+    <label for="{{ form.room_no_of_computers.id_for_label }}">Number of Computers:</label>
+    {{ form.room_no_of_computers|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ form.room_description.errors }}
+    <label for="{{ form.room_description.id_for_label }}">Description:</label>
+    {{ form.room_description|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-check form-check-inline">
+    {{ form.room_has_projector.errors }}
+    {{ form.room_has_projector|add_class:'form-check-input' }}
+    <label class="form-check-label" for="{{ form.room_has_projector.id_for_label }}">
+      Has Projector in Room 
+    </label>
+  </div>
+  
+  <div class="form-btn">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+    
+</form>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %} | Manage{% endblock %}
+
+{% block content %}
+    <h1>All Reservations</h1>
+
+    {% if bookings %}
+    <table class="table">
+      <thead>
+        <th scope="col">Room</th>
+        <th scope="col">Date</th>
+        <th scope="col">Period</th>
+        <th scope="col">Reserved For</th>
+        <th scope="col">Manage</th>
+      </thead>
+      <tbody>
+      {% for booking in bookings %}
+        <tr>
+          <td>{{ booking.room }}</td>
+          <td>{{ booking.booking_date }}</td>
+          <td>{{ booking.booking_period }}</td>
+          <td><a href="{{ booking.get_absolute_url }}">{{ booking.booking_client }}</a></td>
+          <td class="booking-controls">
+            <a class="btn btn-sm btn-primary" href="{{ booking.get_absolute_url }}/update/">Edit</a>
+            <a class="btn btn-sm btn-danger" href="{{ booking.get_absolute_url }}/delete/">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>You have no reservations in the system.</p>
+    {% endif %}
+  
+  <nav aria-label="Page navigation">
+    <ul class="pagination">
+      <!--span class="step-links"-->
+        {% if bookings.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1">&laquo; first</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ bookings.previous_page_number }}">previous</a>
+          </li>
+        {% endif %}
+  
+        <!--<span class="current">-->
+          <li class="page-item active">
+            <span class="page-link">
+              Page {{ bookings.number }} of {{ bookings.paginator.num_pages }}
+            </span>
+          </li>
+        <!--</span>-->
+  
+        {% if bookings.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ bookings.next_page_number }}">next</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ bookings.paginator.num_pages }}">last &raquo;</a>
+          </li>
+        {% endif %}
+      <!--</span>-->
+    </ul>
+  </nav>
+    
+{% endblock %}

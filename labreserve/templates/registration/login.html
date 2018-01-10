@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %} | Login {% endblock %}
+
+{% block content %}
+  <h2>Login</h2>
+  <form method="post">
+    {% csrf_token %}
+    
+    {{ form.non_field_errors }}
+    
+    <div class="fieldWrapper form-group">
+      {{ form.username.errors }}
+      <label for="{{ form.username.id_for_label }}">Username:</label>
+      {{ form.username|add_class:'form-control' }}
+    </div>
+    
+    <div class="fieldWrapper form-group">
+      {{ form.password.errors }}
+      <label for="{{ form.password.id_for_label }}">Password:</label>
+      {{ form.password|add_class:'form-control' }}
+    </div>
+    
+    <div class="form-btn">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+    
+  </form>
+{% endblock %}

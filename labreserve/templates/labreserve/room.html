@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load labreserve_extras %}
+
+{% block title %} | {{ room_name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col">
+    <h2>Room: {{ room_name }}</h2>
+  </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="row">
+  <div class="col">
+    <a href="https://aion-jeff-how.c9users.io/labreserve/room/{{ room }}/{{ prev_week }}/">
+      &laquo; Previous Week
+    </a>
+  </div><!-- /.col -->
+  <div class="col text-center">
+    <h4>{{ monday }} - {{ friday }}</h4>
+  </div><!-- /.col -->
+  <div class="col text-right">
+    <a href="https://aion-jeff-how.c9users.io/labreserve/room/{{ room }}/{{ next_week }}/">
+      Next Week &raquo;
+    </a>
+  </div><!-- /.col -->
+</div><!-- /.row -->
+
+<div class="row">
+  <div class="col">  
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Monday<br>{{ monday }}</th>
+          <th>Tuesday<br>{{ tuesday }}</th>
+          <th>Wednesday<br>{{ wednesday }}</th>
+          <th>Thursday<br>{{ thursday }}</th>
+          <th>Friday<br>{{ friday }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% autoescape off %}
+        <tr>
+          <td>{% period_field booking_list monday 1 request.user room %}</td>
+          <td>{% period_field booking_list tuesday 1 request.user room %}</td>
+          <td>{% period_field booking_list wednesday 1 request.user room %}</td>
+          <td>{% period_field booking_list thursday 1 request.user room %}</td>
+          <td>{% period_field booking_list friday 1 request.user room %}</td>
+        </tr>
+        <tr>
+          <td>{% period_field booking_list monday 2 request.user room %}</td>
+          <td>{% period_field booking_list tuesday 2 request.user room %}</td>
+          <td>{% period_field booking_list wednesday 2 request.user room %}</td>
+          <td>{% period_field booking_list thursday 2 request.user room %}</td>
+          <td>{% period_field booking_list friday 2 request.user room %}</td>
+        </tr>
+        <tr>
+          <td>{% period_field booking_list monday 3 request.user room %}</td>
+          <td>{% period_field booking_list tuesday 3 request.user room %}</td>
+          <td>{% period_field booking_list wednesday 3 request.user room %}</td>
+          <td>{% period_field booking_list thursday 3 request.user room %}</td>
+          <td>{% period_field booking_list friday 3 request.user room %}</td>
+        </tr>
+        <tr>
+          <td>{% period_field booking_list monday 4 request.user room %}</td>
+          <td>{% period_field booking_list tuesday 4 request.user room %}</td>
+          <td>{% period_field booking_list wednesday 4 request.user room %}</td>
+          <td>{% period_field booking_list thursday 4 request.user room %}</td>
+          <td>{% period_field booking_list friday 4 request.user room %}</td>
+        </tr>
+        <tr>
+          <td>{% period_field booking_list monday 5 request.user room %}</td>
+          <td>{% period_field booking_list tuesday 5 request.user room %}</td>
+          <td>{% period_field booking_list wednesday 5 request.user room %}</td>
+          <td>{% period_field booking_list thursday 5 request.user room %}</td>
+          <td>{% period_field booking_list friday 5 request.user room %}</td>
+        </tr>
+        <tr>
+          <td>{% period_field booking_list monday 6 request.user room %}</td>
+          <td>{% period_field booking_list tuesday 6 request.user room %}</td>
+          <td>{% period_field booking_list wednesday 6 request.user room %}</td>
+          <td>{% period_field booking_list thursday 6 request.user room %}</td>
+          <td>{% period_field booking_list friday 6 request.user room %}</td>
+        </tr>
+        <tr>
+          <td>{% period_field booking_list monday 7 request.user room %}</td>
+          <td>{% period_field booking_list tuesday 7 request.user room %}</td>
+          <td>{% period_field booking_list wednesday 7 request.user room %}</td>
+          <td>{% period_field booking_list thursday 7 request.user room %}</td>
+          <td>{% period_field booking_list friday 7 request.user room %}</td>
+        </tr>
+        <tr>
+          <td>{% period_field booking_list monday 8 request.user room %}</td>
+          <td>{% period_field booking_list tuesday 8 request.user room %}</td>
+          <td>{% period_field booking_list wednesday 8 request.user room %}</td>
+          <td>{% period_field booking_list thursday 8 request.user room %}</td>
+          <td>{% period_field booking_list friday 8 request.user room %}</td>
+        </tr>
+        {% endautoescape %}
+      </tbody>
+    </table>
+  </div><!-- /.col -->
+</div><!-- /.row -->
+{% endblock %}
+
+{% block js %}
+    {{ block.super }} {# includes previous content in block #}
+    {# view-specific imports here #}
+    <script type="text/javascript" src="/static/labreserve/booking.js"></script>
+{% endblock %}

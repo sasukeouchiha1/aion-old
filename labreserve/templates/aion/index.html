@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+
+  {% if user.is_authenticated  %}
+    
+    <h2>{{ request.user }}'s Upcoming Labs:</h2>
+    
+    {% if todays_booking_list %}
+      <ul>
+        {% for booking in todays_booking_list %}
+          <li><a href="{% url 'booking-detail' booking.id %}">{{ booking }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No upcoming labs.</p>
+    {% endif %}
+    
+  {% else %}
+    <p>Welcome to the Lab Reservation system for Worcester Tech. This site
+    was created by the Programming and Web Development shop.</p>
+  {% endif %}
+  
+{% endblock %}

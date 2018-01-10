@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %} | New{% endblock %}
+
+{% block content %}
+{% load widget_tweaks %}
+<form action="" method="post">
+  {% csrf_token %}
+    
+  {{ form.non_field_errors }}
+  
+  <div class="fieldWrapper form-group">
+    {{ form.room.errors }}
+    <label for="{{ form.room.id_for_label }}">Room:</label>
+    <select id="id_room" name="room" class="form-control">
+      {% for x,y in form.fields.room.choices %}
+        <option value="{{ x }}"{% if request.GET.room == x|stringformat:"i" %} selected{% endif %}>{{ y }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ form.booking_owner.errors }}
+    <label for="{{ form.booking_owner.id_for_label }}">Reserved By:</label>
+    <select id="id_booking_owner" name="booking_owner" class="form-control">
+      {% for x,y in form.fields.booking_owner.choices %}
+        <option value="{{ x }}"{% if request.user.id == x %} selected{% endif %}>{{ y }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ form.booking_date.errors }}
+    <label for="{{ form.booking_date.id_for_label }}">Reservation Date:</label>
+    <input type="text" 
+      name="booking_date" 
+      required="" 
+      class="form-control" 
+      value="{{ request.GET.month }}/{{ request.GET.day }}/{{ request.GET.year }}" id="id_booking_date">
+  </div>
+  <div class="fieldWrapper form-group">
+    {{ form.booking_client.errors }}
+    <label for="{{ form.booking_date.id_for_label }}">Reserved For:</label>
+    {{ form.booking_client|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ form.booking_period.errors }}
+    <label for="{{ form.booking_period.id_for_label }}">Period:</label>
+    <select id="id_booking_period" name="booking_period" class="form-control">
+      {% for x,y in form.fields.booking_period.choices %}
+        <option value="{{ x }}"{% if request.GET.period == x|stringformat:"i" %} selected{% endif %}>{{ y }}</option>
+      {% endfor %}
+    </select>
+  </div>
+    
+
+  <div class="form-btn">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+
+    
+</form>
+{% endblock %}

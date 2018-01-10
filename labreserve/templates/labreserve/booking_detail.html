@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} | Detail{% endblock %}
+
+{% block content %}
+  <h2>{{ booking }}</h2>
+  <small>Made by: {{ booking.booking_owner }} | Room: {{ booking.room }}</small>
+  
+  <p><strong>Reserved for:</strong> {{ booking.booking_client }}</p>
+  <p><strong>Date:</strong> {{ booking.booking_date }}</p>
+  <p><strong>Period:</strong> {{ booking.booking_period }}</p>
+  
+  <a href="{{ booking.get_absolute_url }}/update/">Edit</a> | 
+  <a href="{{ booking.get_absolute_url }}/delete/">Delete</a>
+{% endblock %}

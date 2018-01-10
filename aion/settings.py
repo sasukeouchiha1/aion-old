@@ -29,7 +29,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'stu4=+#0(zvj3m-1(#li@3g&_t1$2z
 DEBUG = False # bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = [
-    u'aion-jeff-how.c9users.io', 
+    u'blooming-fjord-14801.herokuapp.com',
+    #u'aion-jeff-how.c9users.io', 
     ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

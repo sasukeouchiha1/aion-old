@@ -26,11 +26,12 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'stu4=+#0(zvj3m-1(#li@3g&_t1$2z
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = '' # bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = False # bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = [
     u'aion-jeff-how.c9users.io', 
     ]
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
@@ -74,6 +75,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # 'allowed_include_roots': u'aion-jeff-how.c9users.io',
+            # 'string_if_invalid':'Hello',
         },
     },
 ]
@@ -158,4 +161,5 @@ STATIC_URL = '/static/'
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# THIS ONLY WORKS WHEN DEBUG = TRUE!!
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

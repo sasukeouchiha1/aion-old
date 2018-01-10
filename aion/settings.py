@@ -30,7 +30,7 @@ DEBUG = False # bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = [
     u'blooming-fjord-14801.herokuapp.com',
-    #u'aion-jeff-how.c9users.io', 
+    u'aion-jeff-how.c9users.io', 
     ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

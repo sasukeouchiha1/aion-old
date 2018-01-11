@@ -20,7 +20,9 @@
     
       <header class="header">
         <div class="container">
-        <h1 class="brand float-left"><a href="{% url 'index' %}" class="text-hide" style="background-image:url('{% static 'labreserve/aion-logo.svg' %}');">AION</a></h1>
+        <h1 class="brand float-left text-hide" style="background-image:url('{% static 'labreserve/aion-logo.svg' %}'); width:185px; height:48px; background-repeat:no-repeat;">
+          <a href="{% url 'index' %}">AION</a>
+        </h1>
           <ul class="nav nav-pills justify-content-end">
             {% if user.is_authenticated  %}
             <li class="nav-item dropdown">

@@ -22,6 +22,9 @@ body {
   width: 100%;
   border-bottom: 1px #ccc solid;
 }
+.brand a{
+  text-decoration: none;
+}
 
 /* Room Cal View Styles
 --------------------------------------------------- */

@@ -1,4 +1,14 @@
+# AION
+## Web App for Reserving Computer Labs
 
+This web application was made with Django for reserving computer labs at 
+Worcester Tech.
+
+## Change Log
+2.0 Added Social Auth
+
+
+## Cloud 9 default Read Me
      ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
     '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
     |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 

@@ -32,9 +32,10 @@
               <a class="nav-link dropdown-toggle"
                 data-toggle="dropdown"
                 href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                  Welcome {{ user }}
+                  Welcome {{ user.first_name }}
               </a>
               <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'edit-profile' %}">Profile</a>
                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 {% if user.is_superuser %}
                 <a class="dropdown-item" href="{% url 'bookings' %}">All Bookings</a>

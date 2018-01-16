@@ -53,24 +53,19 @@ urlpatterns += [
     url(r'^$', RedirectView.as_view(url='/labreserve/', permanent=True)),
 ]
 
-# Obsolete Code ================================================================
+# Social Auth Google Verification
+from django.views.generic.base import TemplateView
+urlpatterns += [
+    url(r'^google8ee263e74869302f.html', TemplateView.as_view(template_name='google8ee263e74869302f.html'), name="google8ee263e74869302f"),
+]
 
-# Authentication Views - Above makes obsolete
-'''
-from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns += [
-    #ex: /login
-    url(r'^login/$', auth_views.login, name='login'),
-    url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
+    url(r'^account/', include('social_django.urls', namespace='social')),
+    url(r'^account/', include('django.contrib.auth.urls', namespace='auth')),
 ]
-'''
 
-# Not sure what this does but I'm pretty sure it was a ribbit hole.
-'''
-from labreserve import views as lab_views
 
-urlpatterns += [
-    url(r'$',  lab_views.index, name='index'),
-]
-'''
+

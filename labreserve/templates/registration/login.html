@@ -4,27 +4,39 @@
 {% block title %} | Login {% endblock %}
 
 {% block content %}
+<div class="row"><div class="col">
   <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
+</div></div>
+<div class="row"><div class="col">
+  <p>Login using your Worcester Public Schools Google Account.</p>
+  <p class="text-muted">Please note, this app is only accessible be members of the Worcester Public Schools.
+  If you experience problems usign this app, please contact the Techhigh Helpdesk.</p>
+  <a href="{% url 'social:begin' 'google-oauth2' %}?next=/">
+    <img id="signInButton" src="http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png" onclick="document.getElementById('signInButton').src='http://www.setyourowntests.com/_/rsrc/1468869481521/help/accounts/btn_google_signin_dark_normal_web%402x.png'">
+  </a>
+</div></div>
+  
+  
+  <!--<form method="post">-->
+  <!--  {% csrf_token %}-->
     
-    {{ form.non_field_errors }}
+  <!--  {{ form.non_field_errors }}-->
     
-    <div class="fieldWrapper form-group">
-      {{ form.username.errors }}
-      <label for="{{ form.username.id_for_label }}">Username:</label>
-      {{ form.username|add_class:'form-control' }}
-    </div>
+  <!--  <div class="fieldWrapper form-group">-->
+  <!--    {{ form.username.errors }}-->
+  <!--    <label for="{{ form.username.id_for_label }}">Username:</label>-->
+  <!--    {{ form.username|add_class:'form-control' }}-->
+  <!--  </div>-->
     
-    <div class="fieldWrapper form-group">
-      {{ form.password.errors }}
-      <label for="{{ form.password.id_for_label }}">Password:</label>
-      {{ form.password|add_class:'form-control' }}
-    </div>
+  <!--  <div class="fieldWrapper form-group">-->
+  <!--    {{ form.password.errors }}-->
+  <!--    <label for="{{ form.password.id_for_label }}">Password:</label>-->
+  <!--    {{ form.password|add_class:'form-control' }}-->
+  <!--  </div>-->
     
-    <div class="form-btn">
-      <button type="submit" class="btn btn-primary">Login</button>
-    </div>
+  <!--  <div class="form-btn">-->
+  <!--    <button type="submit" class="btn btn-primary">Login</button>-->
+  <!--  </div>-->
     
-  </form>
+  <!--</form>-->
 {% endblock %}

@@ -32,4 +32,10 @@ urlpatterns += [
     url(r'^bookings/new/$', views.BookingCreateFromCal.as_view(), name='booking_create_from_cal'),
 ]
 
-
+# Google Auth URLS ===========================================================
+urlpatterns += [
+    url(r'^profile/$', views.update_profile, name='edit-profile'),
+    # url(r'^profile/(?P<pk>\d+)/$', views.ProfileDetailView.as_view(), name='view-profile'),
+    url(r'^account/logout/$', views.Logout),
+    url(r'^user/(?P<user_id>\d+)/$', views.userDetailView, name='view-profile'),
+]

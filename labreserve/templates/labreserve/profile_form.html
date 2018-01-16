@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %} | Profile{% endblock %}
+
+{% block content %}
+
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="fieldWrapper form-group">
+    {{ user_form.first_name.errors }}
+    <label for="{{ user_form.first_name.id_for_label }}">First Name:</label>
+    {{ user_form.first_name|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ user_form.last_name.errors }}
+    <label for="{{ user_form.last_name.id_for_label }}">Last Name:</label>
+    {{ user_form.last_name|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ user_form.email.errors }}
+    <label for="{{ user_form.email.id_for_label }}">Email:</label>
+    {{ user_form.email|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ profile_form.location.errors }}
+    <label for="{{ profile_form.location.id_for_label }}">Location:</label>
+    {{ profile_form.location|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ profile_form.phone.errors }}
+    <label for="{{ profile_form.phone.id_for_label }}">Phone:</label>
+    {{ profile_form.phone|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ profile_form.room_no.errors }}
+    <label for="{{ profile_form.room_no.id_for_label }}">Classroom:</label>
+    {{ profile_form.room_no|add_class:'form-control' }}
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ profile_form.bio.errors }}
+    <label for="{{ profile_form.bio.id_for_label }}">Bio:</label>
+    {{ profile_form.bio|add_class:'form-control' }}
+  </div>
+
+  
+  <div class="form-btn">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+    
+</form>
+{% endblock %}

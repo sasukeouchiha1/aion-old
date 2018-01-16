@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} | Detail{% endblock %}
+
+{% block content %}
+  <h3>User Info</h3>
+  <small><strong>Username:</strong> {{ profile.user }}</small>
+  
+  <p><strong>Name:</strong> {{ profile.user.first_name }} {{ profile.user.last_name }}</p>
+  <p><strong>Email:</strong> {{ profile.user.email }}</p>
+  <p><strong>Location:</strong> {{ profile.location }}</p>
+  <p><strong>Bio:</strong> {{ profile.bio }}</p>
+
+
+{% endblock %}

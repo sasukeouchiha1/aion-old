@@ -26,7 +26,7 @@ def period_field( booking_list, date, period, user, room ):
       else:
         # Slot booked by another user
         return '''<div class="period">%s</div>
-                  <div class="booking-text">Reserved (%s)</div>''' % (period, booking.booking_owner)
+                  <div class="booking-text">Reserved (<a href="/labreserve/user/%s">%s<a>)</div>''' % (period, booking.booking_owner.id, booking.booking_owner)
 
   # Slot not booked
   return '''<div class="period">%s</div>

@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'stu4=+#0(zvj3m-1(#li@3g&_t1$2z
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = '' #bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = [
     u'aion-tech.herokuapp.com',
@@ -81,6 +81,8 @@ TEMPLATES = [
                 # Social Auth Deps
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+                # My Context Processor for the Room Calendar Nav feature
+                'labreserve.context_processors.get_rooms',
             ],
             # 'allowed_include_roots': u'aion-jeff-how.c9users.io',
             # 'string_if_invalid':'Hello',

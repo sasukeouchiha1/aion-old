@@ -2,13 +2,31 @@
 {% block title %} | Detail{% endblock %}
 
 {% block content %}
-  <h2>{{ booking }}</h2>
-  <small>Made by: {{ booking.booking_owner }} | Room: {{ booking.room }}</small>
-  
-  <p><strong>Reserved for:</strong> {{ booking.booking_client }}</p>
-  <p><strong>Date:</strong> {{ booking.booking_date }}</p>
-  <p><strong>Period:</strong> {{ booking.booking_period }}</p>
-  
-  <a href="{{ booking.get_absolute_url }}/update/">Edit</a> | 
-  <a href="{{ booking.get_absolute_url }}/delete/">Delete</a>
+<h2>Booking</h2>
+<div class="row">
+      <div class="col"> 
+    <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <th scope="col">Room</th>
+        <th scope="col">Date</th>
+        <th scope="col">Period</th>
+        <th scope="col">Reserved For</th>
+        <th scope="col">Manage</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ booking.room }}</td>
+          <td>{{ booking.booking_date }}</td>
+          <td>{{ booking.booking_period }}</td>
+          <td><a href="{{ booking.get_absolute_url }}">{{ booking.booking_client }}</a></td>
+          <td class="booking-controls">
+            <a class="btn btn-sm btn-primary" href="{{ booking.get_absolute_url }}/update/">Edit</a>
+            <a class="btn btn-sm btn-danger" href="{{ booking.get_absolute_url }}/delete/">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    </div></div>
 {% endblock %}

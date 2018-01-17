@@ -4,6 +4,8 @@
 
 {% block content %}
 {% load widget_tweaks %}
+<div class="row">
+  <div class="col"> 
 <form action="" method="post">
   {% csrf_token %}
     
@@ -18,14 +20,23 @@
   <div class="fieldWrapper form-group">
     {{ form.booking_owner.errors }}
     <label for="{{ form.booking_owner.id_for_label }}">Reserved By:</label>
-    {{ form.booking_owner|add_class:'form-control' }}
+    <select id="id_booking_owner" name="booking_owner" class="form-control">
+      {% for x,y in form.fields.booking_owner.choices %}
+        <option value="{{ x }}"{% if request.user.id == x %} selected{% endif %}>{{ y }}</option>
+      {% endfor %}
+    </select>
   </div>
   
-  <div class="fieldWrapper form-group">
+    <div class="fieldWrapper form-group">
     {{ form.booking_date.errors }}
     <label for="{{ form.booking_date.id_for_label }}">Reservation Date:</label>
-    {{ form.booking_date|add_class:'form-control' }}
+    <input type="text" 
+      name="booking_date" 
+      required="" 
+      class="form-control" 
+      value="{% now 'm/d/Y' %}" id="id_booking_date">
   </div>
+  
   <div class="fieldWrapper form-group">
     {{ form.booking_client.errors }}
     <label for="{{ form.booking_date.id_for_label }}">Reserved For:</label>
@@ -41,7 +52,7 @@
   <div class="form-btn">
     <button type="submit" class="btn btn-primary">Submit</button>
   </div>
-
+</div></div>
     
 </form>
 {% endblock %}

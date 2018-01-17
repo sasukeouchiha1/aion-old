@@ -10,13 +10,12 @@ from django.shortcuts import get_object_or_404
 
 # Landing page for  Aion  
 def index( request ):
-    if( request.user.is_authenticated ):
-        todays_booking_list = Booking.objects.filter( booking_owner = request.user ).filter( booking_date__gte = datetime.date.today().strftime("%Y-%m-%d") )
-        context = { 
-          'todays_booking_list': todays_booking_list,
-        }
-    
-    return render( request, 'aion/index.html' )
+    todays_booking_list = Booking.objects.filter( booking_owner = request.user.pk ).filter( booking_date__gte = datetime.date.today().strftime("%Y-%m-%d") )
+    context = { 
+      'todays_booking_list': todays_booking_list,
+    }
+
+    return render( request, 'aion/index.html', context )
     
 
 #===============================================================================

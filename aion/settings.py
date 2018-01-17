@@ -216,8 +216,8 @@ SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
 LOGIN_URL = '/account/login/'
 
 # Google Client Info
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', '')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', '')
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY', '503008706022-ddvaaf6l5uv8mhs4eqrg6drkij8alghu.apps.googleusercontent.com')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET', 'jKKo9KZbZ-lsLOx4tbDVKmfT')
 
 # https://stackoverflow.com/questions/38566799/limit-google-oauth-access-to-one-domain-using-hd-param-django-python-social
 SOCIAL_AUTH_GOOGLE_OAUTH2_WHITELISTED_DOMAINS = ['techhigh.us', 'worcesterschools.net']

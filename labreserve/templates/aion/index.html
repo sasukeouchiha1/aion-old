@@ -7,13 +7,36 @@
   {% if user.is_authenticated  %}
     
     <h2>Your Upcoming Labs:</h2>
-    
     {% if todays_booking_list %}
-      <ul>
-        {% for booking in todays_booking_list %}
-          <li><a href="{% url 'booking-detail' booking.id %}">{{ booking }}</a></li>
-        {% endfor %}
-      </ul>
+    <div class="row">
+      <div class="col"> 
+    <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <th scope="col">Room</th>
+        <th scope="col">Date</th>
+        <th scope="col">Period</th>
+        <th scope="col">Reserved For</th>
+        <th scope="col">Manage</th>
+      </thead>
+      <tbody>
+      {% for booking in todays_booking_list %}
+        <tr>
+          <td>{{ booking.room }}</td>
+          <td>{{ booking.booking_date }}</td>
+          <td>{{ booking.booking_period }}</td>
+          <td><a href="{{ booking.get_absolute_url }}">{{ booking.booking_client }}</a></td>
+          <td class="booking-controls">
+            <a class="btn btn-sm btn-primary" href="{{ booking.get_absolute_url }}/update/">Edit</a>
+            <a class="btn btn-sm btn-danger" href="{{ booking.get_absolute_url }}/delete/">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    </div></div>
+
     {% else %}
       <p>No upcoming labs.</p>
     {% endif %}

@@ -6,20 +6,22 @@
 {% block content %}
 <div class="row">
   <div class="col">
-    <h2>Room: {{ room_name }}</h2>
+    <h2>Room: <a href="/labreserve/rooms/{{ room_name.pk }}" title="View Room Details">{{ room_name }}</a></h2>
   </div><!-- /.col -->
 </div><!-- /.row -->
 
 <div class="row">
-  <div class="col">
+  <div class="col-md-6 order-md-2 text-center">
+    <h4>{{ monday }} - {{ friday }}</h4>
+  </div><!-- /.col -->
+  
+  <div class="col order-md-1">
     <a href="/labreserve/room/{{ room }}/{{ prev_week }}/">
       &laquo; Previous Week
     </a>
   </div><!-- /.col -->
-  <div class="col text-center">
-    <h4>{{ monday }} - {{ friday }}</h4>
-  </div><!-- /.col -->
-  <div class="col text-right">
+  
+  <div class="col order-md-3 text-right">
     <a href="/labreserve/room/{{ room }}/{{ next_week }}/">
       Next Week &raquo;
     </a>

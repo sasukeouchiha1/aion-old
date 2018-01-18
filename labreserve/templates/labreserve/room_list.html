@@ -2,18 +2,45 @@
 {% block title %} | Rooms{% endblock %}
 
 {% block content %}
-    <h2>Room List</h2>
+    <h2>All Rooms</h2>
 
     {% if room_list %}
-    <ul>
-
+    <div class="row"><div class="col"> 
+    
+    <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+        <th scope="col">Room</th>
+        <th scope="col">Computers</th>
+        <th scope="col">Description</th>
+        <th scope="col">Projector</th>
+        {% if user.is_superuser %}
+        <th scope="col">Manage</th>
+        {% endif %}
+        </tr>
+      </thead>
+      <tbody>
       {% for room in room_list %}
-      <li>
-        <a href="{{ room.get_absolute_url }}">{{ room.room_text }}</a>
-      </li>
+      <tr>
+        <td>
+          <a href="/labreserve/room/{{ room.pk }}/{% now 'Y' %}/{% now 'm' %}/{% now 'd' %}" title="Go to Room Calendar">{{ room.room_text }}</a>
+        </td>
+          <td>{{ room.room_no_of_computers }}</td>
+          <td>{{ room.room_description }}</td>
+          <td>{% if room.room_has_projector %}Yes{% else %}No{% endif %}</td>
+          {% if user.is_superuser %}
+          <td class="booking-controls">
+            <a class="btn btn-sm btn-primary" href="{{ room.get_absolute_url }}/update/">Edit</a>
+            <a class="btn btn-sm btn-danger" href="{{ room.get_absolute_url }}/delete/">Delete</a>
+          </td>
+          {% endif %}
+        </tr>
       {% endfor %}
-
-    </ul>
+      </tbody>
+    </table>
+    </div>
+    </div></div>
     {% else %}
       <p>There are no rooms in the system.</p>
     {% endif %}

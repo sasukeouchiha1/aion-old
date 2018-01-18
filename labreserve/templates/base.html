@@ -36,12 +36,13 @@
               </a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'edit-profile' %}">Profile</a>
-                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 {% if user.is_superuser %}
                 <a class="dropdown-item" href="{% url 'bookings' %}">All Bookings</a>
                 <a class="dropdown-item" href="{% url 'rooms' %}">All Rooms</a>
                 <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Site</a>
                 {% endif %}
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
               </div><!-- /.dropdown-menu -->
             </li><!-- /.dropdown -->
             {% else %}
@@ -62,12 +63,14 @@
             <a class="nav-link dropdown-toggle"
               data-toggle="dropdown"
               href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                Room Calendars
+                Rooms
             </a>
             <div class="dropdown-menu">
               {% for nav_room in nav_room_list %}
                 <a class="dropdown-item" href="/labreserve/room/{{ nav_room.pk }}/{% now 'Y' %}/{% now 'm' %}/{% now 'd' %}">{{ nav_room }}</a>
               {% endfor %}
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'rooms' %}">All Rooms</a>
             </div><!-- /.dropdown-menu -->
           </li><!-- /.dropdown -->
         </ul>

@@ -14,16 +14,20 @@
     <div class="table-responsive">
     <table class="table">
       <thead>
+        <tr>
         <th scope="col">Room</th>
+        <th scope="col">Owner</th>
         <th scope="col">Date</th>
         <th scope="col">Period</th>
         <th scope="col">Reserved For</th>
         <th scope="col">Manage</th>
+        </tr>
       </thead>
       <tbody>
       {% for booking in bookings %}
         <tr>
           <td>{{ booking.room }}</td>
+          <td><a href="{% url 'view-profile' booking.booking_owner.id %}" title="View User Profile">{{ booking.booking_owner }}</a></td>
           <td>{{ booking.booking_date }}</td>
           <td>{{ booking.booking_period }}</td>
           <td><a href="{{ booking.get_absolute_url }}">{{ booking.booking_client }}</a></td>

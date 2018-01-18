@@ -12,19 +12,27 @@
   {{ form.non_field_errors }}
   
   <div class="fieldWrapper form-group">
-    {{ form.room.errors }}
-    <label for="{{ form.room.id_for_label }}">Room:</label>
-    {{ form.room|add_class:'form-control' }}
-  </div>
-  
-  <div class="fieldWrapper form-group">
     {{ form.booking_owner.errors }}
     <label for="{{ form.booking_owner.id_for_label }}">Reserved By:</label>
     <select id="id_booking_owner" name="booking_owner" class="form-control">
-      {% for x,y in form.fields.booking_owner.choices %}
-        <option value="{{ x }}"{% if request.user.id == x %} selected{% endif %}>{{ y }}</option>
-      {% endfor %}
+      {% if user.is_superuser %}
+        {% for x,y in form.fields.booking_owner.choices %}
+          <option value="{{ x }}"{% if request.user.id == x %} selected{% endif %}>{{ y }}</option>
+        {% endfor %}
+      {% else %}
+        {% for x,y in form.fields.booking_owner.choices %}
+          {% if request.user.id == x %}
+            <option value="{{ x }}"selected>{{ y }}</option>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     </select>
+  </div>
+  
+  <div class="fieldWrapper form-group">
+    {{ form.room.errors }}
+    <label for="{{ form.room.id_for_label }}">Room:</label>
+    {{ form.room|add_class:'form-control' }}
   </div>
   
     <div class="fieldWrapper form-group">

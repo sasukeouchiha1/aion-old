@@ -6,15 +6,38 @@
   <h2>All Reservations</h2>
 
   {% if booking_list %}
-  <ul>
-
-    {% for booking in booking_list %}
-    <li>
-      <a href="{{ booking.get_absolute_url }}">{{ booking }}</a>
-    </li>
-    {% endfor %}
-
-    </ul>
+  <div class="row">
+      <div class="col"> 
+    <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+        <th scope="col">Room</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Date</th>
+        <th scope="col">Period</th>
+        <th scope="col">Reserved For</th>
+        <th scope="col">Manage</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for booking in booking_list %}
+        <tr>
+          <td>{{ booking.room }}</td>
+          <td><a href="{% url 'view-profile' booking.booking_owner.id %}" title="View User Profile">{{ booking.booking_owner }}</a></td>
+          <td>{{ booking.booking_date }}</td>
+          <td>{{ booking.booking_period }}</td>
+          <td><a href="{{ booking.get_absolute_url }}">{{ booking.booking_client }}</a></td>
+          <td class="booking-controls">
+            <a class="btn btn-sm btn-primary" href="{{ booking.get_absolute_url }}/update/">Edit</a>
+            <a class="btn btn-sm btn-danger" href="{{ booking.get_absolute_url }}/delete/">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+    </div></div>
     {% else %}
       <p>There are no reservations in the system.</p>
     {% endif %}

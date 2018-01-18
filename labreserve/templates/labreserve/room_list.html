@@ -45,7 +45,9 @@
       <p>There are no rooms in the system.</p>
     {% endif %}
     
-    <a class="btn btn-primary" href="{% url 'room_create' %}">Create Room</a>
+    {% if user.is_superuser %}
+      <a class="btn btn-primary" href="{% url 'room_create' %}">Create Room</a>
+    {% endif %}
     
       {% if is_paginated %}
     <nav aria-label="Page navigation">

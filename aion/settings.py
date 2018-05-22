@@ -154,7 +154,8 @@ SECURE_BROWSER_XSS_FILTER = True
 # We don't have an SSL cert. When we do, we also need to set the http redirect
 SESSION_COOKIE_SECURE = False 
 
-CSRF_COOKIE_SECURE = True
+# Disabled (Default = false) because techhigh.us doesn't have a cert.
+# CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 
 # Heroku: Update database configuration from $DATABASE_URL.

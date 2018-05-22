@@ -13,6 +13,11 @@ def period_field( booking_list, date, period, user, room ):
   new_booking_link = '/labreserve/bookings/new/?room=%s&year=%s&month=%s&day=%s&period=%s' % (room, date.strftime("%Y"),date.strftime("%m"),date.strftime("%d"), period)
   
   for booking in booking_list:
+    if(booking.booking_owner.first_name or booking.booking_owner.last_name):
+      booking_ui_friendly_name = booking.booking_owner.first_name + ' ' + booking.booking_owner.last_name
+    else:
+      booking_ui_friendly_name = booking.booking_owner
+    
     if booking.booking_date == date and booking.booking_period == period:
       if booking.booking_owner == user:
         # Slot booked by user
@@ -20,13 +25,15 @@ def period_field( booking_list, date, period, user, room ):
                   <div class="booking-text">Reserved (%s)</div>
                   <div class="booking-control">
                     <a href="%s" class="btn btn-primary btn-sm">Details</a>
-                  </div>''' % (period, booking.booking_owner, booking.get_absolute_url() )
-                    #<a href="/labreserve/booking/detail/%s/" class="btn btn-default">Details</a>
+                  </div>''' % (period, booking_ui_friendly_name, booking.get_absolute_url() )
+                          # % (period, booking.booking_owner, booking.get_absolute_url() )
+                  # <a href="/labreserve/booking/detail/%s/" class="btn btn-default">Details</a>
 
       else:
         # Slot booked by another user
         return '''<div class="period">%s</div>
-                  <div class="booking-text">Reserved (<a href="/labreserve/user/%s">%s<a>)</div>''' % (period, booking.booking_owner.id, booking.booking_owner)
+                  <div class="booking-text">Reserved (<a href="/labreserve/user/%s">%s<a>)</div>''' % (period, booking.booking_owner.id, booking_ui_friendly_name)
+                                                                                                  # % (period, booking.booking_owner.id, booking.booking_owner)
 
   # Slot not booked
   return '''<div class="period">%s</div>

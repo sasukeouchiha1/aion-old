@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     u'aion-tech.herokuapp.com',
     u'aion-jeff-how.c9users.io',
     u'aion.techhigh.us',
+    'aion.techhigh.us',
     ]
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

@@ -76,8 +76,10 @@ class BookingUpdate(UpdateView):
     def dispatch(self, request, *args, **kwargs):
       handler = super(BookingUpdate, self).dispatch(request, *args, **kwargs)
       # Only allow editing if current user is owner
-      if self.object.booking_owner != request.user:
+      
+      if self.object.booking_owner != request.user and not request.user.is_superuser:
           return HttpResponseForbidden(u"You do not have permissions to update this reservation.")
+      
       return handler
 
 @method_decorator(login_required, name='dispatch')

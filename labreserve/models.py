@@ -49,7 +49,7 @@ class Booking(models.Model):
         unique_together = [
             ("booking_date", "booking_period", "room")
         ]
-        default_permissions = ('add', 'change', 'delete', 'view')
+        # default_permissions = ('add', 'change', 'delete', 'view')
     
     # Returns the url to access a particular Booking instance.
     def get_absolute_url(self):

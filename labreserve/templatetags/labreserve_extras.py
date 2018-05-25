@@ -28,11 +28,22 @@ def period_field( booking_list, date, period, user, room ):
                   </div>''' % (period, booking_ui_friendly_name, booking.get_absolute_url() )
                           # % (period, booking.booking_owner, booking.get_absolute_url() )
                   # <a href="/labreserve/booking/detail/%s/" class="btn btn-default">Details</a>
-
-      else:
-        # Slot booked by another user
+      
+      elif user.is_superuser:
+        # Slot booked by other user, but viewer is an admin and can edit booking.
         return '''<div class="period">%s</div>
-                  <div class="booking-text">Reserved (<a href="/labreserve/user/%s">%s<a>)</div>''' % (period, booking.booking_owner.id, booking_ui_friendly_name)
+                  <div class="booking-text">Reserved<br>
+                  (<a href="/labreserve/user/%s">%s<a>)</div>
+                  <div class="booking-control">
+                    <a href="%s" class="btn btn-primary btn-sm">Details</a>
+                  </div>''' % (period, booking.booking_owner.id, booking_ui_friendly_name, booking.get_absolute_url())
+        
+      else:
+        # Slot booked by another user and viewer is not an admin
+        return '''<div class="period">%s</div>
+                  <div class="booking-text">Reserved<br>
+                  (<a href="/labreserve/user/%s">%s<a>)
+                  </div>''' % (period, booking.booking_owner.id, booking_ui_friendly_name)
                                                                                                   # % (period, booking.booking_owner.id, booking.booking_owner)
 
   # Slot not booked

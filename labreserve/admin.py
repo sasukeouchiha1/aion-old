@@ -12,11 +12,12 @@ from django.core.exceptions import ValidationError
 class BookingInline(admin.TabularInline):
     model = Booking
     extra = 1
-    
+
+@admin.register(Room)   
 class RoomAdmin(admin.ModelAdmin):
     inlines = [BookingInline]
 
-    
+@admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     
     # https://stackoverflow.com/questions/32279064/set-object-permissions-so-that-only-the-user-specified-in-owner-field-can-modi
